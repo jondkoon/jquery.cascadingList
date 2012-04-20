@@ -1,0 +1,62 @@
+﻿.selective
+{
+    background-color: #FFF;
+    height: 90px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    outline: none;
+    border: 1px solid #999;
+    margin: 0;
+    padding: 0;
+}
+
+.selective li 
+{
+    cursor: default;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background-color:#fff;
+    list-style-type: none;
+    height: 16px;
+    line-height: 16px;
+    font-family: 'MS Shell Dlg', 'Lucida Grande';
+    font-size: 13.3333px;
+    padding-right: 5px;
+    padding-left: 3px;
+    border: 1px solid transparent;
+}
+
+.selective li.selected {
+    color: #000;
+}
+
+.selective-disabled, .selective-disabled li
+{
+    background-color: #EEE;
+}
+
+.selective-disabled li 
+{
+    color: #999;
+}
+
+.selective li.selected 
+{
+    background-color: #D4D4D4;
+}
+
+.selective:focus li.selected
+{
+    background-color: #3399FF;
+    color: #FFF;
+}
+
+/* This is good but we need a better solution than this
+.selective:focus li:first-child 
+{
+    border: 1px dotted #333;
+}
+*/
