@@ -5,6 +5,8 @@ jquery.cascadingList is cascading list widget modelled after OSX's finder. It is
 ## Usage
 Here is a simple example using folders like you might find on your operating system.
 
+Assume #cascading-list is a `<div>`
+
     var folders = [
         {
             name: "folder", id: 1
@@ -35,9 +37,48 @@ Here is a simple example using folders like you might find on your operating sys
     });
 
 ## Options
-The cascadingList pluging expects an object with the following options
+The cascadingList pluging expects an object with the following required options:
+- data: an array of item objects that represents your hierarchichal data
+- value: used when setting and retrieving the value from cascadingList
+- display: used for displaying an item to the user
+- parent: the value of this items parent used when forming the hierarchichal structure
 
 
+value, display, and parent can be given in three forms:
+- key string: tells cascadingList what property on the item object to use
+- function: will be called in the context of the item object and will use the return value. The function will be executed for each item once at initialization
+- static string: if a string that is not a property of the item object is given a static string will be used
+
+The following are some optional options:
+- change: a function that will be called when the value is changed. The new value will be passed.
+- defaultValue: the initial value to use after initializing the widget. If none is specified the first item will be used.
+
+##Methods
+The following code demonstrates the methods available on the cascadingList widget:
+
+    var cl = $("#cascading-list");
+
+    //retrieves the current value
+    var value = cl.cascadingList('value');
+
+    //sets the current value
+    cl.cascadingList('value',3);
+
+    //returns an array of values of the children of the given item.
+    //expects an item value as a parameter
+    var children = cl.cascadingList('children',1);
+
+    //returns the number of children directly under a particular item
+    //expects an item value as a parameter
+    //slightly faster then querying the length property children
+    var childrenCount = cl.cascadingList('childrenCount',1);
+
+    //determines what level of the hierarchy has the most items and returns the count
+    //this is good for determining the listHeight if you didn't want any overflow
+    var listHeight = cl.cascadingList('highestRowCount');
+
+    //prints item hierarchy as an unordered list for verification purposes
+    cl.cascadingList('printTree');
 
 
 
