@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>title</title>
+        <title>jquery.cascadingList.js</title>
         <link rel="stylesheet" href="jquery.selective/jquery.selective/jquery.selective.css">
         <link rel="stylesheet" href="jquery.cascadingList/jquery.cascadingList.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
@@ -51,7 +51,8 @@
                     var folder = folders[i];
                     folders_dict[folder.id] = folder;
                 }
-                $("#cascading-list").cascadingList({
+                var cList = $("#cascading-list");
+                cList.cascadingList({
                     data: folders,
                     display: 'name',
                     value: 'id',
@@ -62,6 +63,10 @@
                     var folderName = folders_dict[value].name;
                     $('#foldername').val(folderName);
                 });
+                $('#change-btn').click(function(){
+                    var value = $('#listvalue').val();
+                    cList.cascadingList('value',value);
+                });
             });
         </script>
     </head>
@@ -70,6 +75,7 @@
         </div>
         <label for="listvalue">Value:</label>
         <input type="text" name="listvalue" id="listvalue"></input>
+        <input type="button" id="change-btn" value="change" />
         <br>
         <label for="foldername">Folder Name:</label>
         <input type="text" name="foldername" id="foldername"></input>

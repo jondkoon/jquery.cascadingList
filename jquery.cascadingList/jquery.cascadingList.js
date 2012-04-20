@@ -125,7 +125,7 @@
             node.listNode = listNodes[node.depth];
         });
         $.each(uls, function (index, ul) {
-            ul.selective({ childNodeName: 'li' });
+            ul.selective();
             attachListEvents(ul, data);
             container.append(ul);
         });

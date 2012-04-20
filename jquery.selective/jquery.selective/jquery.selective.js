@@ -139,7 +139,7 @@
             return this.each(function () {
                 var $this = $(this),
                     nodeName = this.nodeName.toLowerCase(),
-                    childNodeName = options.childNodeName,
+                    childNodeName = 'li',
                     data = $this.data('selective');
 
                 options = $.extend({}, default_options, options);

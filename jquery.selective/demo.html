@@ -2,16 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>title</title>
+        <title>jquery.selective.js</title>
         <link rel="stylesheet" href="jquery.selective/jquery.selective.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
         <script src="jquery.selective/jquery.selective.js" type="text/javascript"></script>
         <script>
             $(function(){
                 var list = $(".selective");
-                list.selective({ childNodeName: 'li' });
+                list.selective();
                 list.bind('change',function(){
-                    console.log(list.val());
+                    $('#setval').val(list.val());
+                });
+                $("#setval-btn").click(function(){
+                    var val = $("#setval").val();
+                    list.val(val);
                 });
             });
         </script>
@@ -32,5 +36,8 @@
             <li data-value="item7">item7</li>
             <li data-value="item8">item8</li>
         </ul>
+        <br />
+        Value: <input id="setval" type="text" value="item1" /><input type="button" id="setval-btn" value="change" />
+        
     </body>
 </html>
