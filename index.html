@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery.cascadinglist by jondkoon</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jquery.cascadinglist</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/jondkoon/jquery.cascadingList">View the Project on GitHub <small>jondkoon/jquery.cascadingList</small></a></p>
+        <ul>
+          <li><a href="https://github.com/jondkoon/jquery.cascadingList/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jondkoon/jquery.cascadingList/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jondkoon/jquery.cascadingList">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>jquery.cascadingList</h2>
+
+<p>jquery.cascadingList is cascading list widget modelled after OSX's finder. It is ideal for applications or websites that need a way of allowing users to traverse hierarchical data.</p>
+
+<h2>Usage</h2>
+
+<p>Here is a simple example using folders like you might find on your operating system.</p>
+
+<p>Assume #cascading-list is a <code>&lt;div&gt;</code></p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">folders</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"folder"</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"folder2"</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"file1.txt"</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nx">parent</span><span class="o">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"file2.txt"</span><span class="p">,</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">parent</span><span class="o">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">"file3.txt"</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">7</span> <span class="p">},</span>
+<span class="p">];</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#cascading-list"</span><span class="p">).</span><span class="nx">cascadingList</span><span class="p">({</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="nx">folders</span><span class="p">,</span>
+    <span class="nx">display</span><span class="o">:</span> <span class="s1">'name'</span><span class="p">,</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span>
+    <span class="nx">parent</span><span class="o">:</span> <span class="s1">'parent'</span>
+<span class="p">}).</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'value'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h2>Options</h2>
+
+<p>The cascadingList plugin expects an object with the following required options:  </p>
+
+<ul>
+<li>data: an array of item objects that represents your hierarchichal data</li>
+<li>value: used when setting and retrieving the value from cascadingList</li>
+<li>display: used for displaying an item to the user</li>
+<li>parent: the value of this items parent used when forming the hierarchichal structure</li>
+</ul><p>value, display, and parent can be given in three forms:</p>
+
+<ul>
+<li>key string: tells cascadingList what property on the item object to use</li>
+<li>function: will be called in the context of the item object and will use the return value. The function will be executed for each item once at initialization</li>
+<li>static string: if a string that is not a property of the item object is given a static string will be used</li>
+</ul><p>The following are some optional options:</p>
+
+<ul>
+<li>change: a function that will be called when the value is changed. The new value will be passed.</li>
+<li>defaultValue: the initial value to use after initializing the widget. If none is specified the first item will be used.</li>
+</ul><h2>Methods</h2>
+
+<p>The following code demonstrates the methods available on the cascadingList widget:</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">cl</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#cascading-list"</span><span class="p">);</span>
+
+<span class="c1">//retrieves the current value</span>
+<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'value'</span><span class="p">);</span>
+
+<span class="c1">//sets the current value</span>
+<span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">//returns an array of values of the children of the given item.</span>
+<span class="c1">//expects an item value as a parameter</span>
+<span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'children'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">//returns the number of children directly under a particular item</span>
+<span class="c1">//expects an item value as a parameter</span>
+<span class="c1">//slightly faster then querying the length property children</span>
+<span class="kd">var</span> <span class="nx">childrenCount</span> <span class="o">=</span> <span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'childrenCount'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">//determines what level of the hierarchy has the most items and returns the count</span>
+<span class="c1">//this is good for determining the listHeight if you didn't want any overflow</span>
+<span class="kd">var</span> <span class="nx">listHeight</span> <span class="o">=</span> <span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'highestRowCount'</span><span class="p">);</span>
+
+<span class="c1">//prints item hierarchy as an unordered list for verification purposes</span>
+<span class="nx">cl</span><span class="p">.</span><span class="nx">cascadingList</span><span class="p">(</span><span class="s1">'printTree'</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<h2>License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright © 2012-now Jon Koon</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jondkoon">jondkoon</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
