@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jquery.cascadingList.js</title>
+        <link rel="stylesheet" href="jquery.selective/jquery.selective/jquery.selective.css">
+        <link rel="stylesheet" href="jquery.cascadingList/jquery.cascadingList.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+        <script src="jquery.selective/jquery.selective/jquery.selective.js" type="text/javascript"></script>
+        <script src="jquery.cascadingList/jquery.cascadingList.js" type="text/javascript"></script>
+        <script>
+            $(function(){
+                var folders = [
+                    {
+                        name: "folder",
+                        id: 1
+                    },
+                    {
+                        name: "folder2",
+                        id: 2
+                    },
+                    {
+                        name: "folder3",
+                        id: 3,
+                        parent: 1
+                    },
+                    {
+                        name: "folder4",
+                        id: 4,
+                        parent: 2
+                    },
+                    {
+                        name: "file1.txt",
+                        id: 5,
+                        parent: 3
+                    },
+                    {
+                        name: "file2.txt",
+                        id: 6,
+                        parent: 4
+                    },
+                    { name: "file3.txt", id: 7 },
+                    { name: "file4.txt", id: 8 },
+                    { name: "file5.txt", id: 9 },
+                    { name: "file6.txt", id: 10 },
+                    { name: "file7.txt", id: 11 },
+                    { name: "file8.txt", id: 12 }
+                ];
+                var folders_dict = [];
+                for(var i = 0; i < folders.length; i++){
+                    var folder = folders[i];
+                    folders_dict[folder.id] = folder;
+                }
+                var cList = $("#cascading-list");
+                cList.cascadingList({
+                    data: folders,
+                    display: 'name',
+                    value: 'id',
+                    parent: 'parent'
+                }).change(function(){
+                    var value = $(this).cascadingList('value');
+                    $('#listvalue').val(value);
+                    var folderName = folders_dict[value].name;
+                    $('#foldername').val(folderName);
+                });
+                $('#change-btn').click(function(){
+                    var value = $('#listvalue').val();
+                    cList.cascadingList('value',value);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="cascading-list">
+        </div>
+        <label for="listvalue">Value:</label>
+        <input type="text" name="listvalue" id="listvalue"></input>
+        <input type="button" id="change-btn" value="change" />
+        <br>
+        <label for="foldername">Folder Name:</label>
+        <input type="text" name="foldername" id="foldername"></input>
+        <br>
+    </body>
+</html>
