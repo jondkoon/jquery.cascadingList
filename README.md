@@ -8,34 +8,34 @@ Here is a simple example using folders like you might find on your operating sys
 Assume #cascading-list is a `<div>`
 
 ```javascript
-    var folders = [
-        {
-            name: "folder", id: 1
-        },
-        {
-            name: "folder2", id: 2
-        },
-        {
-            name: "file1.txt",
-            id: 3,
-            parent: 1
-        },
-        {
-            name: "file2.txt",
-            id: 4,
-            parent: 2
-        },
-        { name: "file3.txt", id: 7 },
-    ];
-    $("#cascading-list").cascadingList({
-        data: folders,
-        display: 'name',
-        value: 'id',
-        parent: 'parent'
-    }).change(function(){
-        var value = $(this).cascadingList('value');
-        console.log(value);
-    });
+var folders = [
+    {
+        name: "folder", id: 1
+    },
+    {
+        name: "folder2", id: 2
+    },
+    {
+        name: "file1.txt",
+        id: 3,
+        parent: 1
+    },
+    {
+        name: "file2.txt",
+        id: 4,
+        parent: 2
+    },
+    { name: "file3.txt", id: 7 },
+];
+$("#cascading-list").cascadingList({
+    data: folders,
+    display: 'name',
+    value: 'id',
+    parent: 'parent'
+}).change(function(){
+    var value = $(this).cascadingList('value');
+    console.log(value);
+});
 ```
 
 ##Options
