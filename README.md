@@ -60,29 +60,31 @@ The following are some optional options:
 ##Methods
 The following code demonstrates the methods available on the cascadingList widget:
 
-    var cl = $("#cascading-list");
+```javascript
+var cl = $("#cascading-list");
 
-    //retrieves the current value
-    var value = cl.cascadingList('value');
+//retrieves the current value
+var value = cl.cascadingList('value');
 
-    //sets the current value
-    cl.cascadingList('value',3);
+//sets the current value
+cl.cascadingList('value',3);
 
-    //returns an array of values of the children of the given item.
-    //expects an item value as a parameter
-    var children = cl.cascadingList('children',1);
+//returns an array of values of the children of the given item.
+//expects an item value as a parameter
+var children = cl.cascadingList('children',1);
 
-    //returns the number of children directly under a particular item
-    //expects an item value as a parameter
-    //slightly faster then querying the length property children
-    var childrenCount = cl.cascadingList('childrenCount',1);
+//returns the number of children directly under a particular item
+//expects an item value as a parameter
+//slightly faster then querying the length property children
+var childrenCount = cl.cascadingList('childrenCount',1);
 
-    //determines what level of the hierarchy has the most items and returns the count
-    //this is good for determining the listHeight if you didn't want any overflow
-    var listHeight = cl.cascadingList('highestRowCount');
+//determines what level of the hierarchy has the most items and returns the count
+//this is good for determining the listHeight if you didn't want any overflow
+var listHeight = cl.cascadingList('highestRowCount');
 
-    //prints item hierarchy as an unordered list for verification purposes
-    cl.cascadingList('printTree');
+//prints item hierarchy as an unordered list for verification purposes
+cl.cascadingList('printTree');
+```
 
 ##License
 (The MIT License)
