@@ -7,6 +7,7 @@ Here is a simple example using folders like you might find on your operating sys
 
 Assume #cascading-list is a `<div>`
 
+```javascript
     var folders = [
         {
             name: "folder", id: 1
@@ -35,6 +36,7 @@ Assume #cascading-list is a `<div>`
         var value = $(this).cascadingList('value');
         console.log(value);
     });
+```
 
 ##Options
 The cascadingList plugin expects an object with the following required options:  
