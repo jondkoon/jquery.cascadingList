@@ -86,6 +86,9 @@ var listHeight = cl.cascadingList('highestRowCount');
 cl.cascadingList('printTree');
 ```
 
+##Special Thanks
+Initial development was sponsored by <a href="https://www.aarons.com/">Aaron's</a> as a part of <a href="http://provenmethod.com">Proven Method</a> professional services project
+
 ##License
 (The MIT License)
 
