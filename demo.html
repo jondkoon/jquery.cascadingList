@@ -27,7 +27,22 @@
                     {
                         name: "folder4",
                         id: 4,
-                        parent: 2
+                        parent: 3
+                    },
+                    {
+                        name: "folder5",
+                        id: 13,
+                        parent: 4
+                    },
+                    {
+                        name: "folder6",
+                        id: 14,
+                        parent: 13
+                    },
+                    {
+                        name: "folder7",
+                        id: 15,
+                        parent: 14
                     },
                     {
                         name: "file1.txt",
@@ -37,7 +52,7 @@
                     {
                         name: "file2.txt",
                         id: 6,
-                        parent: 4
+                        parent: 15
                     },
                     { name: "file3.txt", id: 7 },
                     { name: "file4.txt", id: 8 },
@@ -67,10 +82,29 @@
                     var value = $('#listvalue').val();
                     cList.cascadingList('value',value);
                 });
+                
+                scrollableCList = $('#scrollable-list')
+                scrollableCList.cascadingList({
+                	data:folders,
+                	display: 'name',
+                	value: 'id',
+                	parent: 'parent',
+                	scrollable: true
+                }).change(function() {
+                	var value = $(this).cascadingList('value');
+                	$('#scroll-listvalue').val(value);
+                	var folderName = folders_dict[value].name;
+                	$('#scroll-foldername').val(folderName);
+                });
+                $('#change-btn-scroll').click(function() {
+                	var value=$('#scroll-listvalue').val();
+                	scrollableCList.cascadingList('value', value);
+                });
             });
         </script>
     </head>
     <body>
+        <div style="font-size: bigger">Cascading List with fixed width/number of rows</div>
         <div id="cascading-list">
         </div>
         <label for="listvalue">Value:</label>
@@ -79,6 +113,20 @@
         <br>
         <label for="foldername">Folder Name:</label>
         <input type="text" name="foldername" id="foldername"></input>
+        <br>
+        
+        <hr>
+        <div style="font-size: bigger">Cascading List with dynamic row width and number of visible rows (in a 400px wide container, to show scrolling)</div>
+        <div style="width:400px">
+          <div id="scrollable-list">
+          </div>
+        </div>
+        <label for="scroll-listvalue">Value:</label>
+        <input type="text" name="scroll-listvalue" id="scroll-listvalue"></input>
+        <input type="button" id="change-btn-scroll" value="change" />
+        <br>
+        <label for="scroll-foldername">Folder Name:</label>
+        <input type="text" name="scroll-foldername" id="scroll-foldername"></input>
         <br>
     </body>
 </html>

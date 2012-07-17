@@ -56,7 +56,7 @@
         });
         return {
             nodeDict: nodeDict,
-            heads: heads
+            heads: heads,
         };
     }
 
@@ -111,15 +111,29 @@
     function createLists(data, container) {
         var uls = [];
         var listNodes = [];
-        var widthPercentage = (100 / (data.depth + 1)).toFixed(2) + "%";
+        
+        if (data.scrollable) {
+        	container.wrap('<div style="overflow-x: auto"></div>');
+        	
+        }
+        if (!data.scrollable) {
+          var widthPercentage = ((100 / (data.depth + 1)).toFixed(2));
+          if (widthPercentage * (data.depth + 1) > 1) {
+          	widthPercentage -= .01;
+          }
+          widthPercentage += "%"
+        }
         for (var i = 0; i <= data.depth; i++) {
             uls[i] = listTemplate();
-            uls[i].css('width', widthPercentage);
+            if (!data.scrollable) {
+              uls[i].css('width', widthPercentage);
+            }
             listNodes[i] = new LLNode(uls[i]);
             if (i > 0) {
                 listNodes[i - 1].addAfter(listNodes[i]);
             }
         }
+        
         $.each(data.nodeDict, function (index, node) {
             uls[node.depth].append(node.element);
             node.listNode = listNodes[node.depth];
@@ -188,7 +202,7 @@
         }
         return false;
     }
-
+    
     function draw(value, data) {
         var redrawParents = true;
 
@@ -226,6 +240,24 @@
             }
             if (node.depth !== targetNode.depth || node === targetNode) {
                 node.element.parent().val(node.value);
+            }
+            if (data.scrollable && list) {
+            	var neededWidth = 0
+            	if (node.children.length >= 1) {
+                	neededWidth += list.width();
+            	}
+                list.prevAll().each (function(index) {
+                	neededWidth += $(this).width()
+                })
+                list.nextAll().each(function(index) {
+                	$(this).hide();
+                })
+                list.parent().width(neededWidth + 2) // why 2?
+            	if (node.children.length >= 1) {
+            		list.show();
+            	} else {
+            		list.hide()
+            	}
             }
         })(targetNode);
     }
@@ -280,7 +312,7 @@
     }
 
     function bindEvents(options, data) {
-        if ($.isFunction(options.change)) {
+    	if ($.isFunction(options.change)) {
             data.element.bind("change", options.change);
         }
     }
@@ -318,6 +350,7 @@
                 data.heads = tree.heads;
                 data.nodeDict = tree.nodeDict;
                 data.depth = getDepth(data.heads);
+                data.scrollable = options.scrollable
                 attachElements(data.nodeDict);
                 createLists(data, $this);
                 setDefaultValue(options.defaultValue, data);
