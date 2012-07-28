@@ -70,6 +70,11 @@ var value = cl.cascadingList('value');
 //sets the current value
 cl.cascadingList('value',3);
 
+//listen to the widgets change event
+cl.bind('change',function(){
+    console.log('change');
+});
+
 //returns an array of values of the children of the given item.
 //expects an item value as a parameter
 var children = cl.cascadingList('children',1);
