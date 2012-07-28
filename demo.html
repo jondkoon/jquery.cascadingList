@@ -66,6 +66,7 @@
                     var folder = folders[i];
                     folders_dict[folder.id] = folder;
                 }
+
                 var cList = $("#cascading-list");
                 cList.cascadingList({
                     data: folders,
@@ -100,11 +101,12 @@
                 	var value=$('#scroll-listvalue').val();
                 	scrollableCList.cascadingList('value', value);
                 });
+
             });
         </script>
     </head>
     <body>
-        <div style="font-size: bigger">Cascading List with fixed width/number of rows</div>
+        <h3>Cascading List with fixed width/number of rows</h3>
         <div id="cascading-list">
         </div>
         <label for="listvalue">Value:</label>
@@ -116,7 +118,7 @@
         <br>
         
         <hr>
-        <div style="font-size: bigger">Cascading List with dynamic row width and number of visible rows (in a 400px wide container, to show scrolling)</div>
+        <h3>Cascading List with dynamic row width and number of visible rows (in a 400px wide container, to show scrolling)</h3>
         <div style="width:400px">
           <div id="scrollable-list">
           </div>

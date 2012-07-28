@@ -114,14 +114,13 @@
         
         if (data.scrollable) {
         	container.wrap('<div style="overflow-x: auto"></div>');
-        	
         }
         if (!data.scrollable) {
-          var widthPercentage = ((100 / (data.depth + 1)).toFixed(2));
-          if (widthPercentage * (data.depth + 1) > 1) {
-          	widthPercentage -= .01;
-          }
-          widthPercentage += "%"
+            var widthPercentage = ((100 / (data.depth + 1)).toFixed(2));
+            if (widthPercentage * (data.depth + 1) > 1) {
+                widthPercentage -= .01;
+            }
+            widthPercentage += "%"
         }
         for (var i = 0; i <= data.depth; i++) {
             uls[i] = listTemplate();
@@ -189,6 +188,10 @@
                     active_item.addClass('active');
                 }
             });
+        }).bind('change', function(e){
+            //supress change event on the UL.
+            //users will only be interested in the change on cascadingList element
+            e.stopPropagation();
         });
     }
 

@@ -56,6 +56,7 @@ The following are some optional options:
 
 - change: a function that will be called when the value is changed. The new value will be passed.
 - defaultValue: the initial value to use after initializing the widget. If none is specified the first item will be used.
+- scrollable: a boolean that when set to true forces the widget to hide empty child panels and to scroll if the panel widths start to exceed the container
 
 ##Methods
 The following code demonstrates the methods available on the cascadingList widget:
